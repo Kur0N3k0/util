@@ -24,15 +24,14 @@ namespace nekop {
 	public:
 		template< typename T >
 		std::string format(const T& t) {
-			size_t start = 0;
-			size_t pos = this->find("{}", start);
+			size_t pos = this->find("{}", 0);
 			std::string org = *this;
 			std::string ret = org;
 
 			if (pos != std::string::npos) {
 				std::string value = std::to_string(t);
 
-				ret = substr(start, pos) + value + substr(pos + 2);
+				ret = substr(0, pos) + value + substr(pos + 2);
 			}
 			
 			*this = org;
@@ -42,13 +41,12 @@ namespace nekop {
 
 		template< typename _First, typename ... Rest >
 		std::string format(const _First &first, const Rest & ... rest) {
-			size_t start = 0;
-			size_t pos = this->find("{}", start);
+			size_t pos = this->find("{}", 0);
 
 			if (pos != std::string::npos) {
 				std::string value = std::to_string(first);
 
-				*this = substr(start, pos) + value + substr(pos + 2);
+				*this = substr(0, pos) + value + substr(pos + 2);
 
 				return format(rest...);
 			}
