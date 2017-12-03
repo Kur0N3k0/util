@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <tuple>
 
 namespace std {
 	std::string to_string(const char *ptr) { return std::string(ptr); }
@@ -29,7 +30,6 @@ namespace nekop {
 			std::string ret = org;
 
 			if (pos != std::string::npos) {
-				std::string *ptr = this;
 				std::string value = std::to_string(t);
 
 				ret = substr(start, pos) + value + substr(pos + 2);
@@ -44,13 +44,11 @@ namespace nekop {
 		std::string format(const _First &first, const Rest & ... rest) {
 			size_t start = 0;
 			size_t pos = this->find("{}", start);
-			std::string org = *this;
 
 			if (pos != std::string::npos) {
-				std::string *ptr = this;
 				std::string value = std::to_string(first);
 
-				*ptr = substr(start, pos) + value + substr(pos + 2);
+				*this = substr(start, pos) + value + substr(pos + 2);
 
 				return format(rest...);
 			}

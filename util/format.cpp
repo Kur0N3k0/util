@@ -1,4 +1,5 @@
 #include <iostream>
+#include <Windows.h>
 #include "format.h"
 
 namespace nekop {
@@ -14,8 +15,29 @@ namespace nekop {
 }
 
 int main() {
-	nekop::string str = "Hello World!!! {} {} {} {} {} {} {} {} {} {} {}";
-	int a = 123;
+	nekop::string str = "";
+	str += "{} {} {} {} {} {} {} {} {} {}";
+	str += "{} {} {} {} {} {} {} {} {} {}";
+	str += "{} {} {} {} {} {} {} {} {} {}";
+	str += "{} {} {} {} {} {} {} {} {} {}";
+	str += "{} {} {} {} {} {} {} {} {} {}";
+	str += "{} {} {} {} {} {} {} {} {} {}";
+	str += "{} {} {} {} {} {} {} {} {} {}";
+	str += "{} {} {} {} {} {} {} {} {} {}";
+	str += "{} {} {} {} {} {} {} {} {} {}";
+	str += "{} {} {} {} {} {} {} {} {} {}";
+	str += "{} {} {} {} {} {} {} {} {} {}";
+	str += "{} {} {} {} {} {} {} {} {} {}";
+	str += "{} {} {} {} {} {} {} {} {} {}";
+	str += "{} {} {} {} {} {} {} {} {} {}";
+	str += "{} {} {} {} {} {} {} {} {} {}";
+	str += "{} {} {} {} {} {} {} {} {} {}";
+	str += "{} {} {} {} {} {} {} {} {} {}";
+	str += "{} {} {} {} {} {} {} {} {} {}";
+	str += "{} {} {} {} {} {} {} {} {} {}";
+	str += "{} {} {} {} {} {} {} {} {} {}";
+	
+	char *a = "TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTest";
 	unsigned int b = 123;
 	long c = 123;
 	unsigned long d = 123;
@@ -24,8 +46,46 @@ int main() {
 	float g = 123.0;
 	double h = 123.0;
 	long double i = 123.0;
+	int j = 123;
+	
+	LARGE_INTEGER Frequency;
+	LARGE_INTEGER BeginTime;
+	LARGE_INTEGER Endtime;
 
-	std::cout << str.format("KuroNeko says...", 'Y', a, b, c, d, e, f, g, h, i) << std::endl;
+	//프로그램이나 클래스 시작부분에
+	QueryPerformanceFrequency(&Frequency);
+	//사용하고자 하는 부분에 다음 코딩
+	QueryPerformanceCounter(&BeginTime);
+
+	str.format(
+		a, b, c, d, e, f, g, h, i, j,
+		a, b, c, d, e, f, g, h, i, j,
+		a, b, c, d, e, f, g, h, i, j,
+		a, b, c, d, e, f, g, h, i, j,
+		a, b, c, d, e, f, g, h, i, j,
+		a, b, c, d, e, f, g, h, i, j,
+		a, b, c, d, e, f, g, h, i, j,
+		a, b, c, d, e, f, g, h, i, j,
+		a, b, c, d, e, f, g, h, i, j,
+		a, b, c, d, e, f, g, h, i, j,
+		a, b, c, d, e, f, g, h, i, j,
+		a, b, c, d, e, f, g, h, i, j,
+		a, b, c, d, e, f, g, h, i, j,
+		a, b, c, d, e, f, g, h, i, j,
+		a, b, c, d, e, f, g, h, i, j,
+		a, b, c, d, e, f, g, h, i, j,
+		a, b, c, d, e, f, g, h, i, j,
+		a, b, c, d, e, f, g, h, i, j,
+		a, b, c, d, e, f, g, h, i, j,
+		a, b, c, d, e, f, g, h, i, j // 20
+	);
+
+	QueryPerformanceCounter(&Endtime);
+	__int64 elapsed = Endtime.QuadPart - BeginTime.QuadPart;
+	double duringtime = (double)elapsed / (double)Frequency.QuadPart;
+
+	std::cout << duringtime << std::endl;
+	
 	std::cin >> str;
 
 	return 0;
